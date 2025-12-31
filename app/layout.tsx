@@ -11,6 +11,9 @@ const ubuntu = Ubuntu({
 export const metadata: Metadata = {
   title: "DataUnion - Own Your Data",
   description: "Transparent, consent-driven data economy for the future",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({

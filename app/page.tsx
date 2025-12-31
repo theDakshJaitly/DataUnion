@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Vortex } from '@/components/ui/vortex';
 import { CometCard } from '@/components/ui/comet-card';
 import { BackgroundGradient } from '@/components/ui/background-gradient';
+import Image from 'next/image';
 
 export default function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -55,7 +56,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 border border-white/10 bg-white/5 backdrop-blur-sm rounded-lg flex items-center justify-center">
-              <div className="w-5 h-5 bg-white rounded-sm"></div>
+              <Image src="/logo.png" alt="DataUnion Logo" width={24} height={24} className="w-6 h-6 object-contain" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-white tracking-tight">
