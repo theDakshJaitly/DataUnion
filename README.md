@@ -191,13 +191,11 @@ Where contributors own their data • Companies get quality datasets • Everyon
 
 ## 🎬 See It In Action
 
-<video width="100%" controls>
-  <source src="docs/demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![Demo Flow](docs/demo.gif)
 
 **📹 Demo Flow:** Upload Data → AI Validation → Quality Score → Marketplace → License → Payout
-<br>
+
+
 
 ## 🏗️ System Architecture
 
@@ -259,6 +257,45 @@ Where contributors own their data • Companies get quality datasets • Everyon
 
 <div align="left">
 
+## 📁 Project Structure
+
+```
+DataUnion/
+├── 📄 README.md              ← You are here!
+├── 📐 TECHNICAL.md           ← Architecture & diagrams
+├── 📊 RESEARCH.md            ← Market analysis & regulations  
+├── 🚀 ROADMAP.md             ← Round 2 improvements
+│
+├── app/                      ← Next.js App Router
+│   ├── page.tsx             ← Landing page
+│   ├── contributor/         ← Contributor dashboard
+│   ├── company/             ← Company marketplace
+│   └── walkthrough/         ← Interactive transparency demo
+│
+├── components/
+│   ├── ui/                  ← Reusable UI components
+│   ├── dashboard/           ← Dashboard widgets
+│   └── walkthrough/         ← Tutorial components
+│
+├── lib/
+│   ├── supabase/            ← Database client & utilities
+│   └── utils.ts             ← Helper functions
+│
+├── supabase/
+│   ├── schema.sql           ← Database schema (7 tables)
+│   └── seed.sql             ← Demo data
+│
+└── docs/
+    └── diagrams/            ← Architecture visualizations
+        ├── system-architecture.jpg
+        ├── data-lifecycle.jpg
+        ├── database-schema.jpg
+        └── sequence-diagram.jpg
+```
+
+<br>
+
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -273,7 +310,7 @@ Where contributors own their data • Companies get quality datasets • Everyon
 
 ```bash
 # 1️⃣ Clone the repository
-git clone https://github.com/[YOUR-GITHUB-USERNAME]/DataUnion.git
+git clone https://github.com/theDakshJaitly/DataUnion.git
 cd DataUnion
 
 # 2️⃣ Install dependencies
@@ -423,47 +460,6 @@ This prototype validates the core concept. **For Round 2**, we're taking it to p
 
 <br>
 
-## 📁 Project Structure
-
-```
-DataUnion/
-├── 📄 README.md              ← You are here!
-├── 📐 TECHNICAL.md           ← Architecture & diagrams
-├── 📊 RESEARCH.md            ← Market analysis & regulations  
-├── 🚀 ROADMAP.md             ← Round 2 improvements
-│
-├── app/                      ← Next.js App Router
-│   ├── page.tsx             ← Landing page
-│   ├── contributor/         ← Contributor dashboard
-│   ├── company/             ← Company marketplace
-│   └── walkthrough/         ← Interactive transparency demo
-│
-├── components/
-│   ├── ui/                  ← Reusable UI components
-│   ├── dashboard/           ← Dashboard widgets
-│   └── walkthrough/         ← Tutorial components
-│
-├── lib/
-│   ├── supabase/            ← Database client & utilities
-│   └── utils.ts             ← Helper functions
-│
-├── supabase/
-│   ├── schema.sql           ← Database schema (7 tables)
-│   └── seed.sql             ← Demo data
-│
-└── docs/
-    └── diagrams/            ← Architecture visualizations
-        ├── system-architecture.jpg
-        ├── data-lifecycle.jpg
-        ├── database-schema.jpg
-        └── sequence-diagram.jpg
-```
-
-<br>
-
-
-<br>
-
 ## 🙌 Acknowledgments
 
 <div align="center">
@@ -478,7 +474,7 @@ Powered by **Next.js** • **Supabase** • **Tailwind CSS** • The Open Source
 ### 🌟 Star this repo if you believe in ethical AI! 🌟
 
 <p>
-  <a href="https://github.com/[YOUR-USERNAME]/DataUnion">⭐ Star on GitHub</a> •
+  <a href="https://github.com/theDakshJaitly/DataUnion.git">⭐ Star on GitHub</a> •
   <a href="TECHNICAL.md">📐 View Architecture</a> •
   <a href="RESEARCH.md">📊 Read Research</a> •
   <a href="ROADMAP.md">🚀 See Roadmap</a>
