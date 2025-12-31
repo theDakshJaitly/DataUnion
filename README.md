@@ -1,6 +1,16 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/🤝_DataUnion-Ethical_AI_Data_Economy-6366f1?style=for-the-badge" alt="DataUnion Banner" style="transform: scale(1.5); margin: 20px 0;" />
+<table border="0" align="center">
+<tr>
+  <td valign="top">
+    <img src="docs/logo.png" alt="DataUnion Logo" width="80" />
+  </td>
+  <td valign="bottom" style="padding-left: 15px;">
+    <h1 style="margin: 0; font-size: 48px;">DataUnion</h1>
+    <img src="https://img.shields.io/badge/ETHICAL_AI_DATA_ECONOMY-6366f1?style=for-the-badge" alt="Ethical AI Data Economy" />
+  </td>
+</tr>
+</table>
 
 ### *Empowering Transparency and Consent in the AI Data Economy*
 
