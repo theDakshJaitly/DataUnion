@@ -1,8 +1,6 @@
 # 📐 Technical Documentation
 
-> **Note to Friend 1:** This document showcases all your diagrams with technical explanations. Fill in the sections marked with `TODO` and expand on the technical details.
 
----
 
 ## Table of Contents
 
@@ -23,46 +21,17 @@ DataUnion follows a modern web architecture with Next.js as the application laye
 
 ![System Architecture](docs/diagrams/system-architecture.jpg)
 
-### Component Breakdown
+### Core Components
 
-#### **Next.js App Router** (Central Hub)
-- **Server-side rendering** for optimal performance
-- **API routes** for backend logic
-- **React Server Components** for efficient data fetching
-- Handles both contributor and company interfaces
-
-#### **Supabase Auth**
-- Manages user authentication
-- Verifies credentials for all requests
-- Returns authentication tokens
-- Session management
-
-#### **Supabase Database (PostgreSQL)**
-- Primary data store for all entities
-- Row Level Security (RLS) policies
-- Handles financial transactions
-- Stores transaction status and audit logs
-
-#### **AI Quality Engine**
-- Processes submitted data
-- Validates format and completeness
-- Assigns quality scores (0-100)
-- Detects anomalies and duplicates
-
-#### **Payment Gateway**
-- Manages license purchases
-- Processes contributor payouts
-- Handles multi-currency transactions
-- Secure PCI-compliant processing
+*   **Next.js App Router**: Central hub for UI, API, and SSR.
+*   **Supabase Auth**: Secure user authentication and sessions.
+*   **PostgreSQL DB**: Relational data store with RLS policies.
+*   **AI Quality Engine**: Validates data and assigns quality scores.
+*   **Payment Gateway**: Handles license fees and contributor payouts.
 
 ### Request Flow
 
-1. **Client Request** → HTTPS to Next.js App Router
-2. **Authentication** → Supabase Auth verifies credentials
-3. **Data Processing** → AI Quality Engine validates submissions
-4. **Storage** → PostgreSQL database persists data
-5. **Financial** → Payment Gateway handles transactions
-6. **Response** → Data returned to client
+**Client** → **Auth** → **AI Validation** → **DB Storage** → **Payment** → **Response**
 
 ---
 
@@ -72,55 +41,16 @@ DataUnion follows a modern web architecture with Next.js as the application laye
 
 ![Data Lifecycle](docs/diagrams/data-lifecycle.jpg)
 
-### Stage-by-Stage Breakdown
+### The Journey
 
-#### **1. Contributor Submits Data**
-- User uploads data through web/mobile interface
-- Consent preferences are captured
-- Data enters the system as "Raw Data"
+1.  **Submission**: User uploads data; consent captured.
+2.  **Ingestion**: AI validates format & assigns quality score.
+3.  **Aggregation**: Data pooled into licensable datasets.
+4.  **Licensing**: Company purchases access; payment processed.
+5.  **Distribution**: Revenue split & paid to contributors.
+6.  **Audit**: Immutable logs track every access event.
 
-#### **2. Ingestion Process**
-- System validates data format
-- Checks for required fields
-- Initial quality assessment
-
-#### **3. Data Pool**
-- Validated data stored in contributions table
-- Quality score assigned (0-100)
-- Linked to contributor via contributor_id
-
-#### **4. Aggregation Process**
-- Related contributions grouped into datasets
-- Dataset metadata created
-- Statistics calculated (avg quality, contributor count)
-
-#### **5. Licensing Process**
-- Companies browse available datasets
-- Submit license requests
-- Payment processed through gateway
-
-#### **6. Distribution Process**
-- License granted to company
-- Access token provided
-- Usage logging initiated
-
-#### **7. Usage Logs**
-- Every data access recorded
-- Immutable audit trail created
-- Transparency maintained
-
-#### **8. Payout Records**
-- Revenue distributed to contributors
-- Shares calculated based on contribution value
-- Payment records created
-- Loop back to contributor (earnings displayed)
-
-### Key Characteristics
-
-- **Transparency:** Every step is logged
-- **Traceability:** Complete audit trail maintained
-- **Fairness:** Automatic payout distribution
-- **Quality:** AI validation at ingestion
+**Key Traits**: Transparency, Traceability, Fairness, Quality.
 
 ---
 
@@ -130,101 +60,19 @@ DataUnion follows a modern web architecture with Next.js as the application laye
 
 ![Database Schema](docs/diagrams/database-schema.jpg)
 
-### Tables & Relationships
+### Core Entities
 
-#### **Contributors Table**
-```sql
-- contributor_id (PK)
-- name
-- email
-- wallet_address
-- total_earnings
-```
-**Relationships:** 
-- One-to-Many with ConsentRecords
-- One-to-Many with DataContributions
-- One-to-Many with PayoutRecords
+*   **Contributors**: Users providing data. (1:N with Contributions, Payouts).
+*   **Datasets**: Aggregated, licensable pools. (1:N with Contributions, Licenses).
+*   **DataContributions**: Junction table linking User & Dataset with Quality Score.
+*   **Licenses**: Purchase records linking Company & Dataset.
+*   **PayoutRecords**: Financial logs linking License & Contributor.
+*   **UsageLogs**: Immutable audit trail of all data access.
+*   **ConsentRecords**: Tracks explicit permissions and scope.
 
-#### **Datasets Table**
-```sql
-- dataset_id (PK)
-- name
-- description
-- data_type
-- total_quality (Decimal)
-- price (Decimal)
-```
-**Relationships:**
-- One-to-Many with DataContributions
-- One-to-Many with Licenses
+### Design Principles
 
-#### **DataContributions Table** (Central Junction)
-```sql
-- contribution_id (PK)
-- contributor_id (FK)
-- dataset_id (FK)
-- data_content (Text)
-- quality_score (Decimal)
-- timestamp
-```
-**Purpose:** Links contributors to datasets they've contributed to
-
-#### **ConsentRecords Table**
-```sql
-- consent_id (PK)
-- contributor_id (FK)
-- consent_scope (Varchar)
-- granted_date (Date)
-```
-**Purpose:** Tracks explicit consent from contributors
-
-#### **Companies Table**
-```sql
-- company_id (PK)
-- name
-- organization_type
-- contact_email
-```
-**Relationships:**
-- One-to-Many with Licenses
-- One-to-Many with UsageLogs
-
-#### **Licenses Table**
-```sql
-- license_id (PK)
-- company_id (FK)
-- dataset_id (FK)
-- audit_reference_id (Varchar)
-- license_fee (Decimal)
-- issued_date (Date)
-```
-**Purpose:** Records dataset licenses purchased by companies
-
-#### **PayoutRecords Table**
-```sql
-- payout_id (PK)
-- license_id (FK)
-- contributor_id (FK)
-- amount (Decimal)
-```
-**Purpose:** Tracks revenue distribution to contributors
-
-#### **UsageLogs Table**
-```sql
-- log_id (PK)
-- license_id (FK)
-- access_timestamp (Timestamp)
-- action_type (Varchar)
-```
-**Purpose:** Immutable audit trail of data usage
-
-### Database Design Principles
-
-1. **Normalization:** 3NF compliance to reduce redundancy
-2. **Referential Integrity:** Foreign key constraints enforced
-3. **Audit Trail:** UsageLogs table never deleted
-4. **Scalability:** Indexed on frequently queried columns
-5. **Security:** Row Level Security (RLS) policies active
+**Normalization** (3NF), **RLS Security**, **Immutable Audits**, **Referential Integrity**.
 
 ---
 
@@ -234,52 +82,26 @@ DataUnion follows a modern web architecture with Next.js as the application laye
 
 ![Sequence Diagram](docs/diagrams/sequence-diagram.jpg)
 
-### Step-by-Step Process
+### The Flow
 
-#### **Phase 1: Initiation**
-1. **Company User** clicks "License Now" button
-2. **UI** sends POST request to `/api/license`
-3. Request includes: `datasetId`, `companyId`, `paymentInfo`
+1.  **Initiation**: Company requests license via API.
+2.  **Validation**: System checks balance & auth.
+3.  **Execution**:
+    *   Create `License` record.
+    *   Calculate payouts for *all* contributors.
+    *   Commit transaction atomically.
+4.  **Completion**: Access token issued.
 
-#### **Phase 2: Validation**
-4. **API** validates company balance & authentication
-5. **Database** queries company account
-6. Returns validation result (OK/Error)
+### Payment Formula
 
-#### **Phase 3: License Creation**
-7. **API** creates license record
-8. **Database** inserts into `licenses` table
-9. Generates unique `license_id`
-10. Returns confirmation
+```text
+1. Contribution Weight = Quality Score * Base Value
+2. Total Weight = Sum(All Contribution Weights)
+3. Contributor Share = (Contribution Weight / Total Weight) * (License Fee * 0.90)
+4. Platform Fee = License Fee * 0.10
+```
 
-#### **Phase 4: Payout Distribution**
-11. **API** calls `distributePayouts()` function
-12. **Database** queries `DataContributions` for dataset
-13. Returns list of all contributors
-14. **API** calculates payout shares (based on contribution value)
-15. **Database** inserts records into `payout_records` table
-16. Confirms insertion
-
-#### **Phase 5: Completion**
-17. **API** returns success response with audit log ID
-18. **UI** displays "License Active + Download link"
-19. **Company User** receives confirmation
-
-### Technical Considerations
-
-**Transaction Atomicity:**
-- All database operations in a single transaction
-- If any step fails, entire process rolls back
-- Ensures data consistency
-
-**Error Handling:**
-- Insufficient balance → Transaction rejected
-- Invalid dataset → Error returned
-- Database failure → Rollback + alert admin
-
-**Performance:**
-- Average completion time: < 2 seconds
-- Payout calculation optimized for up to 1000 contributors per dataset
+**Tech Specs**: Atomic Transactions, <2s latency, Rollback on failure.
 
 ---
 
@@ -291,6 +113,7 @@ DataUnion follows a modern web architecture with Next.js as the application laye
 - **Database:** PostgreSQL with connection pooling
 - **API Response Time:** < 500ms (95th percentile)
 - **Static Assets:** Served via Vercel Edge Network
+- **Compute:** Serverless functions auto-scale with traffic
 
 ### Bottlenecks & Solutions
 
@@ -327,7 +150,7 @@ DataUnion follows a modern web architecture with Next.js as the application laye
 
 - **Encryption at rest:** AES-256 for sensitive fields
 - **Encryption in transit:** TLS 1.3 for all connections
-- **PII handling:** Pseudonymization where possible
+- **PII handling:** Pseudonymization of wallet addresses/IDs
 - **Audit logs:** Immutable, append-only
 
 ### Regulatory Compliance
@@ -341,7 +164,7 @@ DataUnion follows a modern web architecture with Next.js as the application laye
 **AI Act Compliance:**
 - Training data transparency
 - Audit trail for all usage
-- Human oversight in quality scoring
+- Human-in-the-loop for disputes
 
 ### Failure Handling
 
@@ -390,24 +213,10 @@ DataUnion follows a modern web architecture with Next.js as the application laye
 - Error rates by endpoint
 - User engagement metrics
 
-**Logging:**
-- Structured JSON logs
-- CloudWatch integration
-- Error tracking with Sentry
-
-**Alerts:**
-- > 5% error rate → Immediate notification
-- Database CPU > 80% → Warning
-- Payment failure → Critical alert
-
----
-
-## TODO for Friend 1:
-
-- [ ] Expand on any technical details I missed
-- [ ] Add specific metrics/benchmarks if you have them
-- [ ] Include any additional diagrams you created
-- [ ] Explain design decisions further if needed
+**Logging & Observability:**
+- **Vercel Analytics**: Real-time performance metrics and web vitals.
+- **Supabase Logs**: Database query analysis and auth logs.
+- **Runtime Logs**: Server-side application logs via Vercel.
 
 ---
 
