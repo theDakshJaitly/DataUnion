@@ -61,21 +61,19 @@ Real user accounts enable persistent data, personalization, and secure transacti
 
 ---
 
-### 4. Immutable Audit Trails
+### 4. Immutable Audit Trails (Simplified Data Lineage)
  
- **Purpose:** Verifiable, tamper-evident logs without blockchain overhead
+ **Purpose:** Transparently show users exactly where their data goes and who uses it.
  
  **Implementation:**
- - **Merkle Trees** to hash transaction batches
- - **Publicly verifiable** root hashes published daily
- - **Append-only logs** in Supabase (WORM storage)
- - **Cryptographic signatures** for every consent record
+ - **Visual Data Lineage:** A clear UI flow showing `Contribution -> Dataset -> Company`.
+ - **Database-Backed Tracking:** Utilizing the relational schema (`data_contributions` -> `datasets` -> `licenses` -> `companies`) to trace usage.
+ - **Transparency Log Update:** Add a dedicated "Audit Trail" view to the Contributor Dashboard.
  
  **Benefits:**
- - Tamper-proof transaction history
- - Third-party audits
- - Cryptographic proof of consent
- - High performance (no gas fees or latency)
+ - Clear visibility into data usage.
+ - Builds trust by showing the "end destination" of data.
+ - Verifiable against payout records.
 
 ---
 
