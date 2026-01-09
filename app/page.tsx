@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { DynamicBackground } from '@/components/landing/dynamic-background';
 import { NoiseOverlay } from '@/components/ui/noise-overlay';
 
@@ -29,12 +30,19 @@ export default function Home() {
             <NoiseOverlay />
 
             {/* Header */}
-            <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 mix-blend-difference">
-                <div className="flex items-center gap-2">
-                    <div className="h-8 w-8 bg-white rounded-sm" />
-                    <span className="text-xl font-bold tracking-tighter">DataUnion</span>
+            <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6">
+                <div className="flex items-center gap-3">
+                    <Image
+                        src="/logo.png"
+                        alt="DataUnion Logo"
+                        width={40}
+                        height={40}
+                        className="rounded-md"
+                        priority
+                    />
+                    <span className="text-xl font-bold tracking-tighter text-white mix-blend-difference">DataUnion</span>
                 </div>
-                <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide opacity-80">
+                <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide opacity-80 mix-blend-difference">
                     <Link href="/about" className="hover:text-white/80 transition-colors">MANIFESTO</Link>
                     <Link href="/research" className="hover:text-white/80 transition-colors">RESEARCH</Link>
                     <Link href="/contact" className="hover:text-white/80 transition-colors">CONTACT</Link>
