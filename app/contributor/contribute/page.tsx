@@ -474,7 +474,7 @@ export default function ContributeData() {
                                     return path.split('.').reduce((o, i) => o ? o[i] : null, obj);
                                 };
 
-                                const timestamps = readings.map(r => getNestedValue(r, timestampKey)).filter(t => t !== null && t !== undefined);
+                                const timestamps = readings.map((r: any) => getNestedValue(r, timestampKey)).filter((t: any) => t !== null && t !== undefined);
 
                                 if (timestamps.length > 1) {
                                     // Check if timestamps are sequential numbers (or convertable to numbers)
