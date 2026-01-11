@@ -37,6 +37,9 @@ export default function ContributorDashboard() {
         // Fetch contributor data
         const fetchDashboardData = async () => {
             try {
+                // CHROME/EDGE FIX: Clear any stale attempt flags from previous sessions
+                sessionStorage.removeItem(`profile_create_attempted_${user.id}`);
+
                 // Get or create contributor
                 // Use auth_user_id to link with Supabase Auth
                 let { data: contributor, error: contributorError } = await supabase
@@ -61,12 +64,28 @@ export default function ContributorDashboard() {
                         .single();
 
                     if (createError) {
-                        console.error('Error creating contributor profile:', createError);
-                        // Fallback to onboarding if creation fails
-                        router.push('/contributor/onboarding');
-                        return;
+                        // CHROME/EDGE FIX: Wait and retry once for RLS policy issues
+                        // (Chrome/Edge have stricter cookie timing)
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+                        const { data: retryContributor } = await supabase
+                            .from('contributors')
+                            .select('*')
+                            .eq('auth_user_id', user.id)
+                            .maybeSingle();
+
+                        if (retryContributor) {
+                            contributor = retryContributor;
+                            // Success on retry - don't log error
+                        } else {
+                            // Only log error if retry also failed
+                            console.error('Error creating contributor profile:', createError);
+                            // Fallback to onboarding if still fails
+                            router.push('/contributor/onboarding');
+                            return;
+                        }
+                    } else {
+                        contributor = newContributor;
                     }
-                    contributor = newContributor;
                 }
                 // Check if profile is complete (has name)
                 const hasCompletedProfile = contributor.name && contributor.name !== user.email?.split('@')[0];

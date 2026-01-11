@@ -1,3 +1,8 @@
+**Team:** Waystar RoyCo  
+**Theme:** Open Innovation
+
+---
+
 <div align="center">
 
 <table border="0" align="center">
@@ -27,8 +32,10 @@ Where contributors own their data • Companies get quality datasets • Everyon
 
 <p align="center">
   <a href="TECHNICAL.md">📐 Architecture</a> •
+  <a href="SCALABILITY AND FAILURE HANDLING.md">🚀 Scalability</a> •
+  <a href="FINANCE.md">💰 Finance</a> •
   <a href="RESEARCH.md">📊 Research</a> •
-  <a href="Phase2_Implementation_Plan.md">🔮 Phase 2 Implementation Plan</a>
+  <a href="Phase2_Implementation_Plan.md">🔮 Phase 2 Plan</a>
 </p>
 
 
@@ -46,6 +53,8 @@ Where contributors own their data • Companies get quality datasets • Everyon
 
 <br>
 
+</div>
+
 ## 🚨 The Crisis in AI Data
 
 > **The AI industry has a dirty secret: most training data is acquired without consent, compensation, or transparency.**
@@ -54,7 +63,7 @@ Where contributors own their data • Companies get quality datasets • Everyon
 <tr>
 <td width="50%" valign="top">
 
-### 💔 The Current Reality
+###  The Current Reality
 
 - 🏴‍☠️ **Unauthorized scraping** is the industry standard
 - ⚖️ **Billion-dollar lawsuits** (NYT vs OpenAI, Getty vs Stability AI)
@@ -66,7 +75,7 @@ Where contributors own their data • Companies get quality datasets • Everyon
 </td>
 <td width="50%" valign="top">
 
-### 🎯 The Impact
+###  The Impact
 
 - **$1.5B** settlement paid by Anthropic for copyright infringement
 - **€250M** fine imposed on Google by French regulators
@@ -198,9 +207,9 @@ Where contributors own their data • Companies get quality datasets • Everyon
 
 </details>
 
-</div>
-
 <br>
+
+
 
 </div>
 
@@ -351,16 +360,21 @@ npm run dev
 # ✅ Open http://localhost:3000
 ```
 
+</div>
+
+<br>
 
 ## 📚 Complete Documentation
 
-<div align="left">
+<div align="center">
 
-| Document | What's Inside 
-|:--------:|---------------
-| **[📐 TECHNICAL.md](TECHNICAL.md)** | System architecture • 4 detailed diagrams • Database schema • Scalability & security 
-| **[📊 RESEARCH.md](RESEARCH.md)** | Problem analysis • Regulatory landscape (GDPR, EU AI Act) • Market statistics • Case studies 
-| **[🚀 Phase2_Implementation_Plan.md](Phase2_Implementation_Plan.md)** | Round 2 features • Technical improvements • Scaling strategy • Timeline
+| Document | What's Inside |
+|:--------:|---------------|
+| **[📐 TECHNICAL.md](TECHNICAL.md)** | System architecture • 4 detailed diagrams • Database schema • Scalability & security |
+| **[🚀 SCALABILITY.md](SCALABILITY%20AND%20FAILURE%20HANDLING.md)** | 4-phase scaling strategy • Failure handling • Circuit breakers • 99.5% uptime target |
+| **[💰 FINANCE.md](FINANCE.md)** | 90/10 revenue split • Market analysis ($17B by 2032) • Business model • PESTLE analysis |
+| **[📊 RESEARCH.md](RESEARCH.md)** | Problem analysis • Regulatory landscape (GDPR, EU AI Act) • Market statistics • Case studies |
+| **[🔮 Phase2_Implementation_Plan.md](Phase2_Implementation_Plan.md)** | Round 2 features • Technical improvements • Scaling strategy • Timeline |
 
 </div>
 
@@ -400,59 +414,114 @@ npm run dev
 
 | Team Member | Role | Contribution |
 |:-----------:|:----:|--------------|
-| **Yashasvi Pandey** | 💻 Full-Stack Developer, Team Lead | System architecture • Prototype • Main README • Roadmap planning |
-| **Daksh Jaitly** | 💻 Full-Stack Developer, Designer | System design • Database design • Prototype • Technical documentation |
-| **Arjun Sharma** | 📊 Research Analyst, Designer | Market research • Regulatory analysis • Impact assessment |
-| **Shivansh Sharma** | Frontend Developer, 📊 Research Analyst | Main README • Roadmap planning • Designing |
+| **Yashasvi Pandey** | 💻 Full-Stack Developer, Team Lead | UI • Main README • Transaction Sequence |
+| **Daksh Jaitly** | 💻 Full-Stack Developer, Designer | System Architecture • Database design • Scalability • Technical documentation |
+| **Arjun Sharma** | 📊 Research Analyst, Designer | Market research • Client-side AI Engine • Financial Model |
+| **Shivansh Sharma** | Frontend Developer, 📊 Research Analyst | Authentication • Round2 Updates • Designing |
 
 **Collaborative Development:** All code reviews, architectural decisions, and documentation done as a team
 
-</div>
-
-<br>
-
-## 🔮 What's Next: Round 2 Vision
-
-This prototype validates the core concept. **For Round 2**, we're taking it to production:
+## 🆕 Round 2 Key Innovations
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### 🚀 New Features
+### 🧠 Client-Side AI Engine
 
-- 🔐 **Real Authentication** (Supabase Auth)
-- 🤖 **ML Quality Scoring** (Text/Image Analysis)
-- 📜 **Immutable Audit Trails** (Merkle Trees)
-- � **Economic Simulation** (Dynamic Pricing)
-- 🗣️ **Community Feedback** (Voting & Bugs)
+**Zero-Server Inference Architecture**
+
+- AI quality scoring runs entirely in the user's browser via Web Workers
+- **`@xenova/transformers`** (WASM-optimized language model)
+- 100 concurrent uploads with **0% server CPU increase**
+- Instant feedback (no network latency)
+
+**Quality Scoring Formula:**
+- Domain Relevance (35%)
+- Semantic Coherence (35%)  
+- Entity Density (20%)
+- Readability (10%)
+
+📐 *See [TECHNICAL.md](TECHNICAL.md) for architecture details*
 
 </td>
 <td width="50%" valign="top">
 
-### ⚡ Technical Upgrades
+### 💰 Advanced Financial Model
 
-- 🏗️ **Scalability Readiness** (Modular Monolith)
-- 📊 **Advanced Analytics** (Deep Insights)
-- 🛡️ **GDPR Compliance** (Data Export/Delete)
-- ⚡ **Serverless Architecture** (Edge Functions)
-- � **Lean Business Model** (10% Platform Fee)
+**90/10 Revenue Split**
+
+- Contributors get **90%** of every license sale
+- Platform takes only **10%** (vs industry 50-60%)
+- Quality-weighted payout distribution
+- Atomic transactions + idempotency keys
+
+**Market Opportunity:**
+- Projected $17B market by 2032
+- Targeting high-value RLHF sector ($1,400-$56,000/domain)
+- Undercutting Scale AI's 50% take rate
+
+💰 *See [FINANCE.md](FINANCE.md) for full economic analysis*
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🛡️ Failure Handling System
+
+**Mission-Critical Resilience**
+
+**AI Engine Failure:**  
+→ Graceful degradation to server-side queue
+
+**Database Outage:**  
+→ Circuit breaker pattern, read-only mode
+
+**Transaction Failures:**  
+→ Atomic rollback, zero double-charges
+
+**Monitoring:**  
+→ Sentry, Supabase Logs, Vercel Analytics
+
+🚀 *See [SCALABILITY AND FAILURE HANDLING.md](SCALABILITY%20AND%20FAILURE%20HANDLING.md) for contingency plans*
+
+</td>
+<td width="50%" valign="top">
+
+### 📈 4-Phase Scalability Strategy
+
+**Growth Roadmap:**
+
+**Phase 1 (0-100 users):**  
+Single Supabase instance, client-side AI
+
+**Phase 2 (100-1K users):**  
+Connection pooling, edge caching
+
+**Phase 3 (1K-10K users):**  
+Read replicas, CDN, composite indices
+
+**Phase 4 (10K+ users):**  
+Sharding, geo-replication, async payouts
+
+**Target:** 99.5% uptime, <2s transaction latency
+
+🚀 *See [SCALABILITY AND FAILURE HANDLING.md](SCALABILITY%20AND%20FAILURE%20HANDLING.md) for phase details*
 
 </td>
 </tr>
 </table>
 
-<div align="center">
-
-**🔗 See complete Implementation Plan:** [Phase2_Implementation_Plan.md](Phase2_Implementation_Plan.md)
+<br>
 
 </div>
 
 <br>
 
-## 🙌 Acknowledgments
-
 <div align="center">
+
+## 🙌 Acknowledgments
 
 **Built for Hack the Winter - The Second Wave (Angry Bird Edition)**  
 *Graphic Era Hill University, Bhimtal*
@@ -461,13 +530,25 @@ Powered by **Next.js** • **Supabase** • **Tailwind CSS** • The Open Source
 
 ---
 
+## 📄 Documentation Hub
+
+**Quick Links for Judges:**
+
+| Technical | Business | Planning |
+|:---------:|:--------:|:--------:|
+| [Architecture](TECHNICAL.md) | [Finance Model](FINANCE.md) | [Phase 2 Plan](Phase2_Implementation_Plan.md) |
+| [Scalability](SCALABILITY%20AND%20FAILURE%20HANDLING.md) | [Market Research](RESEARCH.md) | [Live Demo](https://data-union-three.vercel.app/) |
+
+---
+
 ### 🌟 Star this repo if you believe in ethical AI! 🌟
 
 <p>
   <a href="https://github.com/theDakshJaitly/DataUnion.git">⭐ Star on GitHub</a> •
   <a href="TECHNICAL.md">📐 View Architecture</a> •
-  <a href="RESEARCH.md">📊 Read Research</a> •
-  <a href="Phase2_Implementation_Plan.md">🚀 See Implementation Plan</a>
+  <a href="FINANCE.md">💰 View Finance</a> •
+  <a href="SCALABILITY AND FAILURE HANDLING.md">🚀 View Scalability</a> •
+  <a href="RESEARCH.md">📊 Read Research</a>
 </p>
 
 **Building an Ethical AI Future, One Dataset at a Time** ❤️
